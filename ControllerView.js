@@ -18,12 +18,14 @@ export default class ControllerView extends React.Component {
 		return (
 			<View>
 				<View>
-				{
-					this.props.axes.map((value, i) => <AxisBar key={i} value={value} text={'Axis ' + i + ': ' + value} />)
+				{	this.props.axes
+					? this.props.axes.map((value, i) => <AxisBar key={i} value={value} text={'Axis ' + i + ': ' + value} />)
+					: (<Text>Axis not found</Text>)
 				}
 				</View>
 				<View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>{
-					this.props.buttons.map((value, i) =>
+                    this.props.buttons
+					? this.props.buttons.map((value, i) =>
 						<Text key={i}
 							style={{
 								borderWidth:1,
@@ -36,6 +38,7 @@ export default class ControllerView extends React.Component {
 								textAlign: 'center',
 							}}
 						>{i}</Text>)
+					: (<Text>Buttons not found</Text>)
 				}</View>
 			</View>
 		);

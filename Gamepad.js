@@ -4,8 +4,8 @@ import { showMessage } from 'react-native-flash-message';
 import GamepadController from 'react-native-gamepad-controller';
 import ControllerView from './ControllerView';
 
-import dgram from 'dgram';
-import buffer from 'buffer';
+// import dgram from 'dgram';
+// import buffer from 'buffer';
 
 export default class App extends React.Component {
     constructor() {
@@ -19,9 +19,9 @@ export default class App extends React.Component {
     onGamepadConnect(deviceUUID) {
         const { gamepads } = this.state;
         if (!gamepads[deviceUUID]) {
-            gamepads[deviceUUID] = { state: 'connected', temp: null };
+            gamepads[deviceUUID] = { state: 'connected' };
         } else {
-            gamepads[deviceUUID] = { state: 'reconnected', temp: null };
+            gamepads[deviceUUID] = { state: 'reconnected' };
         }
 
         this.setState({ gamepads: gamepads });
@@ -36,7 +36,7 @@ export default class App extends React.Component {
     onGamepadDisconnect(deviceUUID) {
         const { gamepads } = this.state;
         if (gamepads[deviceUUID]) {
-            gamepads[deviceUUID] = { state: 'disconnected', temp: null };
+            gamepads[deviceUUID] = { state: 'disconnected' };
         }
 
         this.setState({ gamepads: gamepads });
@@ -49,8 +49,10 @@ export default class App extends React.Component {
 
     onGamepadData(data) {
         const { gamepads } = this.state;
-        if (gamepads[deviceUUID]) {
-            gamepads[deviceUUID] = { temp: JSON.stringify(data) };
+        if (gamepads[data.gamepadID]) {
+            gamepads[data.gamepadID] = { ...gamepads[data.gamepadID], ...data };
+        } else {
+            gamepads[data.gamepadID] = { state: 'connected', ...data };
         }
 
         this.setState({ gamepads: gamepads });
@@ -72,7 +74,9 @@ export default class App extends React.Component {
 						<View>
 							<Text>Gamepads: {Object.keys(this.state.gamepads).length}</Text>
 							{
-								Object.values(this.state.gamepads).map((pad, i) => <ControllerView key={i} axes={pad.axes} buttons={pad.buttons} />)
+								Object
+                                    .values(this.state.gamepads)
+                                    .map((pad, i) => <ControllerView key={i} axes={pad.axes} buttons={pad.buttons} />)
 							}
 						</View>
 					)
