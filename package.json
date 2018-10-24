@@ -9,12 +9,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "buffer": "5.2.1",
     "expo": "30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
-    "react-native-flash-message": "^0.1.10",
+    "react-native-flash-message": "0.1.10",
     "react-native-gamepad-controller": "0.1.0",
-    "react-native-udp": "^2.3.1"
+    "react-native-udp": "2.3.1"
   },
   "browser": {
     "dgram": "react-native-udp"

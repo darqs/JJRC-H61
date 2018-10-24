@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
-import Gamepad from './Gamepad';
+import Gamepad from './components/Gamepad';
 
 export default class App extends React.Component {
     constructor() {

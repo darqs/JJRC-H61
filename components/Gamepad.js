@@ -3,9 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import GamepadController from 'react-native-gamepad-controller';
 import ControllerView from './ControllerView';
-
-// import dgram from 'dgram';
-// import buffer from 'buffer';
+import DroneControlInstance from './../utilities/drone';
 
 export default class App extends React.Component {
     constructor() {
@@ -56,6 +54,7 @@ export default class App extends React.Component {
         }
 
         this.setState({ gamepads: gamepads });
+        DroneControlInstance.updatePosition(data);
     }
 
     render() {
