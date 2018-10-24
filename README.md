@@ -10,6 +10,13 @@
 6. Install Expo app on your phone
 7. Run Expo and scan QRCode
 
+## TODO
+
+* check WiFi name - drones network has specific name
+* check Bluetooth device name - Xbox pad has specific name
+* add Xbox pad key schema presentation
+* add Xbox pad configuration
+
 ## Tips
 
 ### UDP checksum

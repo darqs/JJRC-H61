@@ -6,12 +6,17 @@ class DroneControl {
 		// open udp connection
 		// send "calibration"
 		// change connection status
-		// start send "idle" 
+		// start send "idle"
 	}
 
 	updatePosition({ axes, buttons }) {
 		// first: check connection status
 		// second: check commands priority (stop is most inportant)
+		//
+		// RT - one key start
+		// LT - one key land
+		// RB - stop
+		// A  - stop
 	}
 
 	calculateChecksum(message) {
