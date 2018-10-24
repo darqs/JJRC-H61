@@ -49,7 +49,7 @@ export default class App extends React.Component {
                                 type: "success"
                             })}
                     >
-                        <Text style={[styles.buttonLabel, { fontSize: 14 }]}>{'III'}</Text>
+                        <Text style={[styles.buttonLabel, { fontSize: 14 }]}>{'IV'}</Text>
                     </TouchableOpacity>
                 </View>
                 <FlashMessage

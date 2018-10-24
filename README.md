@@ -9,3 +9,19 @@
 5. Run app using ExpoCLI (`expo start --lan`)
 6. Install Expo app on your phone
 7. Run Expo and scan QRCode
+
+## Tips
+
+### UDP checksum
+
+There was used very simple algorithm for most commands. I need subtract all bytes from each other. Example:
+
+````javascript
+	const _ = messageWithoutChecksum = Buffer.from('ff087e3f403f90121200', 'hex');
+	const checksum = Buffer.from([ _[0] - _[1] - _[2] - _[3] - _[4] - _[5] - _[6] - _[7] - _[8] - _[9] ])[0];
+	// checksum === 0x07
+````
+
+I found only 2 exceptions to this relationship:
+* calibration command (`ff087e3f403fd0121200cb`)
+* stop command (`ff087e3f403f901212a069`)
