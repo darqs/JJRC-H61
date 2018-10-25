@@ -1,5 +1,7 @@
 # JJRC-H61
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d846e93139d84ae8b1e66e5d9cd92f41)](https://app.codacy.com/app/darqs/JJRC-H61?utm_source=github.com&utm_medium=referral&utm_content=darqs/JJRC-H61&utm_campaign=Badge_Grade_Dashboard)
+
 ## How to run app
 
 1.  Install Expo as global package (`npm i -g expo expo-cli`)
