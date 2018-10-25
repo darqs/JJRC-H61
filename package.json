@@ -6,7 +6,8 @@
     "start": "expo start --lan",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint-md": "remark ."
   },
   "dependencies": {
     "buffer": "5.2.1",
@@ -19,5 +20,8 @@
   },
   "browser": {
     "dgram": "react-native-udp"
+  },
+  "remarkConfig": {
+    "plugins": ["remark-preset-lint-recommended"]
   }
 }

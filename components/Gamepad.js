@@ -5,6 +5,18 @@ import GamepadController from 'react-native-gamepad-controller';
 import ControllerView from './ControllerView';
 import DroneControlInstance from './../utilities/drone';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        fontSize: 50
+    }
+});
+
 export default class App extends React.Component {
     constructor() {
         super();
@@ -84,15 +96,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        fontSize: 50
-    }
-});
