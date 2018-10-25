@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import FlashMessage, { showMessage } from 'react-native-flash-message';
+import FlashMessage from 'react-native-flash-message';
 import Gamepad from './components/Gamepad';
 
 const styles = StyleSheet.create({
@@ -39,49 +39,11 @@ export default class App extends React.Component {
         super();
     }
 
-    showSimpleMessage(type = "default", props = {}) {
-        const message = {
-            message: "Some message title",
-            description: "Lorem ipsum dolar sit amet",
-            icon: { icon: "auto", position: "left" },
-            type,
-            ...props,
-        };
-
-        showMessage(message);
-     }
-
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1, backgroundColor: "#B3B3B3" }}>
                     <Gamepad />
-                    <TouchableOpacity
-                        activeOpacity={0.75}
-                        style={[styles.button, styles.demoButton]}
-                        onPress={() => this.showSimpleMessage()}
-                    >
-                        <Text style={[styles.buttonLabel]}>{'I'}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.75}
-                        style={[styles.button, styles.demoButton, { backgroundColor: "#636363" }]}
-                        onPress={() => showMessage({ message: "Just one single line in this", type: "info" })}
-                    >
-                        <Text style={[styles.buttonLabel]}>{'II'}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.75}
-                        style={[styles.button, styles.demoButton, { backgroundColor: "#CC00FF" }]}
-                        onPress={() =>
-                            showMessage({
-                                message: "Message that hide your status bar",
-                                description: "Cool, uhm?",
-                                type: "success"
-                            })}
-                    >
-                        <Text style={[styles.buttonLabel, { fontSize: 14 }]}>{'IV'}</Text>
-                    </TouchableOpacity>
                 </View>
                 <FlashMessage
                     position={ 'bottom' }
