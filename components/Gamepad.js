@@ -73,24 +73,32 @@ export default class App extends React.Component {
         return (
             <View>
                 <GamepadController
-                    onData={data => { this.onGamepadData(data) }}
-                    onConnect={data => { this.onGamepadConnect(data) }}
-                    onDisconnect={data => { this.onGamepadDisconnect(data) }}
-                    onDisconnectt={data => { this.onGamepadDisconnect(data) }}
+                    onData={data => {
+                        this.onGamepadData(data)
+                    }}
+                    onConnect={data => {
+                        this.onGamepadConnect(data)
+                    }}
+                    onDisconnect={data => {
+                        this.onGamepadDisconnect(data)
+                    }}
+                    onDisconnectt={data => {
+                        this.onGamepadDisconnect(data)
+                    }}
                 />
                 {
                     Object.keys(this.state.gamepads).length === 0
-                    ? <Text style={styles.text}>Gamepad not connected.</Text>
-                    : (
-						<View>
-							<Text>Gamepads: {Object.keys(this.state.gamepads).length}</Text>
-							{
-								Object
-                                    .values(this.state.gamepads)
-                                    .map((pad, i) => <ControllerView key={i} axes={pad.axes} buttons={pad.buttons} />)
-							}
-						</View>
-					)
+                        ? <Text style={styles.text}>Gamepad not connected.</Text>
+                        : (
+                            <View>
+                                <Text>Gamepads: {Object.keys(this.state.gamepads).length}</Text>
+                                {
+                                    Object
+                                        .values(this.state.gamepads)
+                                        .map((pad, i) => <ControllerView key={i} axes={pad.axes} buttons={pad.buttons}/>)
+                                }
+                            </View>
+                        )
                 }
             </View>
         );
