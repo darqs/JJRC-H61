@@ -34,7 +34,7 @@ export default class App extends React.Component {
             gamepads[deviceUUID] = { state: 'reconnected' };
         }
 
-        this.setState({ gamepads: gamepads });
+        this.setState({ gamepads });
 
         showMessage({
             message: `New gamepad (${deviceUUID}) connected !`,
@@ -73,18 +73,10 @@ export default class App extends React.Component {
         return (
             <View>
                 <GamepadController
-                    onData={data => {
-                        this.onGamepadData(data)
-                    }}
-                    onConnect={data => {
-                        this.onGamepadConnect(data)
-                    }}
-                    onDisconnect={data => {
-                        this.onGamepadDisconnect(data)
-                    }}
-                    onDisconnectt={data => {
-                        this.onGamepadDisconnect(data)
-                    }}
+                    onData={this.onGamepadData.bind(this)}
+                    onConnect={this.onGamepadConnect.bind(this)}
+                    onDisconnect={this.onGamepadDisconnect.bind(this)}
+                    onDisconnectt={this.onGamepadDisconnect.bind(this)}
                 />
                 {
                     Object.keys(this.state.gamepads).length === 0

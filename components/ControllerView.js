@@ -3,18 +3,18 @@ import { Text, View } from 'react-native';
 
 class AxisBar extends React.Component {
     render() {
-        let width = (50 + (this.props.value) * 50) + '%';
+        let width = `${(50 + (this.props.value) * 50)}%`;
         return (
             <View style={{ margin: 2, borderColor: '#22f5', borderWidth: 1 }}>
                 <View style={{
-                    width: width,
+                    width,
                     height: '100%',
                     position: 'absolute',
                     backgroundColor: '#22f5'
                 }}/>
                 <Text style={{ textAlign: 'center' }}>{this.props.text}</Text>
             </View>
-        )
+        );
     }
 }
 
@@ -25,7 +25,7 @@ export default class ControllerView extends React.Component {
                 <View>
                     {this.props.axes
                         ? this.props.axes.map((value, i) => <AxisBar key={i} value={value}
-                                                                     text={'Axis ' + i + ': ' + value}/>)
+                                                                     text={`Axis ${i}: ${value}`}/>)
                         : (<Text>Axis not found</Text>)
                     }
                 </View>

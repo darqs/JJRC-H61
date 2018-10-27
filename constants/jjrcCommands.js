@@ -26,8 +26,8 @@ export const udpCommands = {
     backwards: Buffer.from('ff087e3f7f3f90121200c8', 'hex'),
     left: Buffer.from('ff087e3f40009012120046', 'hex'),
     right: Buffer.from('ff087e3f407e90121200c8', 'hex'),
-    left_turn: Buffer.from('ff087e00403f9012120046', 'hex'),
-    right_turn: Buffer.from('ff087e7e403f90121200c8', 'hex')
+    leftTurn: Buffer.from('ff087e00403f9012120046', 'hex'),
+    rightTurn: Buffer.from('ff087e7e403f90121200c8', 'hex')
 };
 
 export default {
