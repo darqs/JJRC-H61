@@ -1,5 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+const styles = StyleSheet.create({
+    text: {
+        borderWidth: 1,
+        backgroundColor: value ? '#22f5' : '#fff',
+        borderColor: '#22f5',
+        padding: 4,
+        margin: 4,
+        width: 32,
+        borderRadius: 16,
+        textAlign: 'center',
+    }
+});
 
 class AxisBar extends React.Component {
     render() {
@@ -20,30 +33,19 @@ class AxisBar extends React.Component {
 
 export default class ControllerView extends React.Component {
     render() {
+        const { axes, buttons } = this.props;
         return (
             <View>
                 <View>
-                    {this.props.axes
-                        ? this.props.axes.map((value, i) => <AxisBar key={i} value={value}
-                                                                     text={`Axis ${i}: ${value}`}/>)
+                    {axes
+                        ? axes.map((value, i) => <AxisBar key={i} value={value} text={`Axis ${i}: ${value}`}/>)
                         : (<Text>Axis not found</Text>)
                     }
                 </View>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>{
-                    this.props.buttons
-                        ? this.props.buttons.map((value, i) =>
-                            <Text key={i}
-                                  style={{
-                                      borderWidth: 1,
-                                      backgroundColor: value ? '#22f5' : '#fff',
-                                      borderColor: '#22f5',
-                                      padding: 4,
-                                      margin: 4,
-                                      width: 32,
-                                      borderRadius: 16,
-                                      textAlign: 'center',
-                                  }}
-                            >{i}</Text>)
+                    buttons
+                        ? buttons.map((value, i) =>
+                            <Text key={i} style={styles.text}>{i}</Text>)
                         : (<Text>Buttons not found</Text>)
                 }</View>
             </View>
