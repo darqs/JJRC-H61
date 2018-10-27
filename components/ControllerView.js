@@ -4,13 +4,16 @@ import { StyleSheet, Text, View } from 'react-native';
 const styles = StyleSheet.create({
     text: {
         borderWidth: 1,
-        backgroundColor: value ? '#22f5' : '#fff',
+        backgroundColor: '#fff',
         borderColor: '#22f5',
         padding: 4,
         margin: 4,
         width: 32,
         borderRadius: 16,
         textAlign: 'center',
+    },
+    active: {
+        backgroundColor: '#22f5'
     }
 });
 
@@ -45,7 +48,7 @@ export default class ControllerView extends React.Component {
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>{
                     buttons
                         ? buttons.map((value, i) =>
-                            <Text key={i} style={styles.text}>{i}</Text>)
+                            <Text key={i} style={styles.text}>{`${i} ${value ? '*' : ''}`}</Text>)
                         : (<Text>Buttons not found</Text>)
                 }</View>
             </View>

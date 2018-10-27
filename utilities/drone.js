@@ -6,7 +6,7 @@ import XboxPadButtons from './../constants/xboxPadButtons';
 
 const messageSenderLoopTime = 30;
 
-/* eslint indent: ["error", 2, { "SwitchCase": 1 }] */
+/* eslint indent: ["error", 4, { "SwitchCase": 1 }] */
 
 class DroneUtils {
     static calculateChecksum(message) {
