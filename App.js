@@ -2,6 +2,7 @@ import React from 'react';
 import { BackHandler, View } from 'react-native';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import Gamepad from './components/Gamepad';
+import TestPanel from './components/TestPanel';
 
 export default class App extends React.Component {
     constructor() {
@@ -30,6 +31,7 @@ export default class App extends React.Component {
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1, backgroundColor: "#B3B3B3" }}>
                     <Gamepad/>
+                    <TestPanel />
                 </View>
                 <FlashMessage
                     position={'bottom'}

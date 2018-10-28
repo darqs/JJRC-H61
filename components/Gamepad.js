@@ -49,7 +49,7 @@ export default class App extends React.Component {
             gamepads[deviceUUID] = { state: 'disconnected' };
         }
 
-        this.setState({ gamepads: gamepads });
+        this.setState({ gamepads });
 
         showMessage({
             message: `Gamepad (${deviceUUID}) disconnected !`,

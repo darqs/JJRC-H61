@@ -12,6 +12,7 @@
   "dependencies": {
     "buffer": "5.2.1",
     "expo": "30.0.1",
+    "expokit": "^1.7.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-flash-message": "0.1.10",
@@ -22,6 +23,8 @@
     "dgram": "react-native-udp"
   },
   "remarkConfig": {
-    "plugins": ["remark-preset-lint-recommended"]
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
   }
 }

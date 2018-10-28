@@ -1,4 +1,4 @@
-import udp from 'dgram';
+import dgram from 'dgram';
 import { Buffer } from 'buffer';
 import { showMessage } from 'react-native-flash-message';
 import JJRCCommands from './../constants/jjrcCommands';
@@ -19,11 +19,16 @@ class DroneUtils {
             throw new Error('Checksum not correct !');
         }
     }
+
+    static randomPort() {
+        return Math.random() * 60536 | 0 + 5000 // 60536-65536
+    }
 }
 
 class DroneControl {
     constructor() {
-        this.udp = { host: '172.16.10.1', port: 8080 };
+        // this.udp = { host: '172.16.10.1', port: 8080 };
+        this.udp = { host: '127.0.0.1', port: 33333 };
         this.errorCount = 1;
         this.calibrated = false;
         this.command = JJRCCommands.idle;
@@ -32,8 +37,21 @@ class DroneControl {
         this.emergancyEnabled = false;
     }
 
+    createSocket() {
+        return new Promise((resolve, reject) => {
+            this.client = dgram.createSocket('udp4');
+            this.client.bind(DroneUtils.randomPort(), (error) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
     async startControl() {
-        this.client = udp.createSocket('udp4');
+        await this.createSocket();
         await this.sendCalibrationPackage();
         this.calibrated = true;
         this.startSenderLoop();
@@ -53,38 +71,15 @@ class DroneControl {
     }
 
     sendCalibrationPackage() {
-        // return new Promise((resolve) => {
-        //     let i = 0;
-        //     const interval = setInterval(() => {
-        //         this.sendMessage(JJRCCommands.calibration, false);
-        //         i++;
-        //         if (i === 100) {
-        //             clearInterval(interval);
-        //             resolve();
-        //         }
-        //     }, messageSenderLoopTime);
-        // });
         return this.sendPackage({
-            message,
+            message: JJRCCommands.calibration,
             validateNeeded: false
         });
     }
 
     sendEmergencyStopPackage() {
-        // return new Promise((resolve) => {
-        //     let i = 0;
-        //     const interval = setInterval(() => {
-        //         this.sendMessage(JJRCCommands.stop, false);
-        //         i++;
-        //         if (i === 100) {
-        //             clearInterval(interval);
-        //             this.emergancyEnabled = false;
-        //             resolve();
-        //         }
-        //     }, messageSenderLoopTime);
-        // });
         return this.sendPackage({
-            message,
+            message: JJRCCommands.stop,
             validateNeeded: false
         }, () => {
             this.emergancyEnabled = false;
@@ -133,19 +128,15 @@ class DroneControl {
             return;
         }
 
-        switch (buttons) {
-            case XboxPadButtons.RB:
-            case XboxPadButtons.A:
-                this.emergancyEnabled = true;
-                this.sendEmergencyStopPackage();
-                return;
-            case XboxPadButtons.LT:
-                this.command = JJRCCommands.land;
-                return;
-            case XboxPadButtons.RT:
-                this.command = JJRCCommands.start;
-                return;
+        if (buttons[XboxPadButtons.RB] || buttons[XboxPadButtons.A]) {
+            this.emergancyEnabled = true;
+            this.sendEmergencyStopPackage();
+        } else if (buttons[XboxPadButtons.LT]) {
+            this.command = JJRCCommands.land;
+        } else if (buttons[XboxPadButtons.RT]) {
+            this.command = JJRCCommands.start;
         }
+
         // first: check connection status
         // second: check commands priority (stop is most inportant)
         //
