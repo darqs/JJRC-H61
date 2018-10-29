@@ -69,6 +69,18 @@ class DroneControl {
         }, messageSenderLoopTime * 50);
     }
 
+    stopSenderLoop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+            this.timeout = null;
+        }
+    }
+
     sendCalibrationPackage() {
         return this.sendPackage({
             message: JJRCCommands.calibration,
@@ -77,6 +89,8 @@ class DroneControl {
     }
 
     sendEmergencyStopPackage() {
+        this.stopSenderLoop();
+        this.command = JJRCCommands.idle;
         return this.sendPackage({
             message: JJRCCommands.stop,
             validateNeeded: false
